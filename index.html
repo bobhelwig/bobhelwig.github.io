@@ -1,14 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Word Wise 2.0</title>
-    <script type="module" crossorigin src="/assets/index-vo9LONH6.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CgJywuNw.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Wise 2.0</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f1efe8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      gap: 2rem;
+    }
+    img { width: 220px; }
+    #message {
+      font-size: 1.1rem;
+      color: #5f5e5a;
+      max-width: 480px;
+      text-align: center;
+      line-height: 1.6;
+    }
+    #status {
+      font-size: 0.75rem;
+      color: #888780;
+    }
+  </style>
+</head>
+<body>
+  <img src="logo.png" alt="Word Wise 2.0">
+  <p id="message">Loading...</p>
+  <p id="status"></p>
+  <script>
+    const { createClient } = supabase;
+    const client = createClient(
+      'YOUR_SUPABASE_URL',
+      'YOUR_ANON_KEY'
+    );
+    client
+      .from('site_messages')
+      .select('message')
+      .eq('id', 1)
+      .single()
+      .then(function(response) {
+        if (response.error) {
+          document.getElementById('message').textContent = 'Something worth reading is coming.';
+          document.getElementById('status').textContent = 'db: error — ' + response.error.message;
+        } else {
+          document.getElementById('message').textContent = response.data.message;
+          document.getElementById('status').textContent = 'db: connected';
+        }
+      });
+  </script>
+</body>
 </html>
