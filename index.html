@@ -34,7 +34,10 @@
 <body>
   <img src="logo.png" alt="Word Wise 2.0">
   <p id="message">Loading...</p>
-  <img src="ww_small_logo.png">Word Wise 2.0
+  <div style="display: flex; align-items: center; gap: 0.4rem;">
+    <img src="ww_small_logo.png" style="width: 20px; height: 20px; object-fit: contain;">
+    <span style="font-size: 0.85rem; color: #888780;">Word Wise 2.0</span>
+  </div>
   <p id="status"></p>
   <script>
     const { createClient } = supabase;
