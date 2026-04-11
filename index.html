@@ -1,64 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Word Wise 2.0</title>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <style>
-    body {
-      font-family: system-ui, sans-serif;
-      background: #f1efe8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-      gap: 2rem;
-    }
-    img { width: 220px; }
-    #message {
-      font-size: 1.1rem;
-      color: #5f5e5a;
-      max-width: 480px;
-      text-align: center;
-      line-height: 1.6;
-    }
-    #status {
-      font-size: 0.75rem;
-      color: #888780;
-    }
-  </style>
-</head>
-<body>
-  <img src="logo.png" alt="Word Wise 2.0">
-  <p id="message">Loading...</p>
-  <div style="display: flex; align-items: center; gap: 0.4rem;">
-    <img src="ww_small_logo.png" style="width: 20px; height: 20px; object-fit: contain;">
-    <span style="font-size: 0.85rem; color: #888780;">Word Wise 2.0, Copyright 2026</span>
-  </div>
-  <p id="status"></p>
-  <script>
-    const { createClient } = supabase;
-    const client = createClient(
-      'https://qsjmcwepgplnswmpqezj.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFzam1jd2VwZ3BsbnN3bXBxZXpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU3NTQ4NzcsImV4cCI6MjA5MTMzMDg3N30.QRj9VWH8AqNjI0H40uIJS6f1x_Gr_RvVjhh4bpBlt_M'
-    );
-    client
-      .from('site_messages')
-      .select('message')
-      .eq('id', 1)
-      .single()
-      .then(function(response) {
-        if (response.error) {
-          document.getElementById('message').textContent = 'Something worth reading is coming.';
-          document.getElementById('status').textContent = 'db: error — ' + response.error.message;
-        } else {
-          document.getElementById('message').textContent = response.data.message;
-          document.getElementById('status').textContent = 'db: connected';
-        }
-      });
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Word Wise 2.0</title>
+    <script type="module" crossorigin src="/assets/index-BFalxEfq.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DC5vs0rb.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>
